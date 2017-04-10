@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.on.sl.comp208.clientdemo.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="372dp"
+        android:layout_height="504dp"
+        android:layout_marginRight="6dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="3dp">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="45dp"
+            android:onClick="click"
+            android:text="Find Me Something to Do!"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="421dp" />
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="320dp"
+            android:layout_height="360dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:text="Hello World!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/shortName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textview"
+            android:layout_alignStart="@+id/textview"
+            android:layout_alignTop="@+id/textview"
+            android:layout_marginTop="34dp"
+            android:text="Short Name" />
+
+        <TextView
+            android:id="@+id/urlString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_below="@+id/shortName"
+            android:layout_alignLeft="@+id/textview"
+            android:layout_alignStart="@+id/textview"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textview"
+            android:layout_alignStart="@+id/textview"
+            android:layout_below="@+id/urlString"
+            android:layout_marginTop="31dp"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textview"
+            android:layout_alignEnd="@+id/textview"
+            android:layout_alignRight="@+id/textview"
+            android:layout_marginBottom="43dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:onClick="next"
+            android:text="Next" />
+
+        <Button
+            android:id="@+id/Previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/next"
+            android:layout_alignBottom="@+id/next"
+            android:layout_alignLeft="@+id/textview"
+            android:layout_alignStart="@+id/textview"
+            android:layout_marginLeft="39dp"
+            android:layout_marginStart="39dp"
+            android:onClick="previous"
+            android:text="Previous" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
