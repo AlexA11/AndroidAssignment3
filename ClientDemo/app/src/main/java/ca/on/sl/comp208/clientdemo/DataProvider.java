@@ -35,22 +35,11 @@ public class DataProvider extends ContentProvider {
         Gson gson = new Gson();
         Event events = gson.fromJson(result, Event.class);
 
-        MatrixCursor mc = new MatrixCursor(new String[] {"Title", "Short Title", "URL", "Date Time Local"});
+        MatrixCursor mc = new MatrixCursor(new String[] {"_id", "Title", "Short Title", "URL", "Date Time Local"});
         for (int i = 0; i < events.events.size() ; i++) {
-            mc.addRow(new Object[] {events.events.get(i).getTitle(), events.events.get(i).getShort_title(), events.events.get(i).datetime_local, events.events.get(i).getUrl()});
+            mc.addRow(new Object[] {0, events.events.get(i).getTitle(), events.events.get(i).getShort_title(), events.events.get(i).datetime_local, events.events.get(i).getUrl()});
         }
 
-//        publishProgress(events.toString());
-
-//        String[] columnNames = DataContract.columnNames;
-//        MatrixCursor mc = new MatrixCursor(columnNames);
-//        MatrixCursor.RowBuilder rb;
-//        for (int row=0; row < events.length; row++) {
-//            rb = mc.newRow();
-//            for(int col = 0; col < events[0].length; col++) {
-//                rb.add(events[row][col]);
-//            }
-//        }
         return mc;
     }
 
