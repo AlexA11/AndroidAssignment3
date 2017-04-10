@@ -7,16 +7,11 @@ import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.provider.BaseColumns;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        textView = (TextView) findViewById(R.id.textview);
+        textView = (TextView) findViewById(R.id.layout_title);
         shortName = (TextView) findViewById(R.id.shortName);
         dateTime = (TextView) findViewById(R.id.datetime);
         urlString = (TextView) findViewById(R.id.urlString);
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void update(Cursor cursor) {
         String[] from = {BaseColumns._ID, "Title", "Short Title", "URL", "Date Time Local"};
-        int[] to = {R.id.textview, R.id.shortName, R.id.urlString, R.id.datetime};
+        int[] to = {R.id.layout_title, R.id.layout_shortname, R.id.layout_urlstring, R.id.layout_datetime};
         SimpleCursorAdapter adap = new SimpleCursorAdapter(this, R.layout.list_layout, cursor, from, to);
         ListView scroller = (ListView) findViewById(R.id.scrollView);
         scroller.setAdapter(adap);
