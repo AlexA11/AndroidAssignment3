@@ -17,6 +17,7 @@ public class Event {
     }
 
     public class Events {
+        String id;
         String title;
         String short_title;
         String url;
@@ -46,14 +47,24 @@ public class Event {
         public void setDatetime_local(String datetime_local) {
             this.datetime_local = datetime_local;
         }
+
+        public String getId() {
+            return id;
+        }
+
         @Override
         public String toString() {
-            return "Event{" +
-                    "title='" + title + '\'' +
+            return "Events{" +
+                    "id='" + id + '\'' +
+                    ", title='" + title + '\'' +
                     ", short_title='" + short_title + '\'' +
                     ", url='" + url + '\'' +
                     ", datetime_local='" + datetime_local + '\'' +
                     '}';
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
 
         public String getShort_title() {

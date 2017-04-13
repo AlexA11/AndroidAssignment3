@@ -37,7 +37,7 @@ public class DataProvider extends ContentProvider {
 
         MatrixCursor mc = new MatrixCursor(new String[] {"_id", "Title", "Short Title", "URL", "Date Time Local"});
         for (int i = 0; i < events.events.size() ; i++) {
-            mc.addRow(new Object[] {0, events.events.get(i).getTitle(), events.events.get(i).getShort_title(), events.events.get(i).datetime_local, events.events.get(i).getUrl()});
+            mc.addRow(new Object[] {events.events.get(i).getId(), events.events.get(i).getTitle(), events.events.get(i).getShort_title(), events.events.get(i).datetime_local, events.events.get(i).getUrl()});
         }
 
         return mc;

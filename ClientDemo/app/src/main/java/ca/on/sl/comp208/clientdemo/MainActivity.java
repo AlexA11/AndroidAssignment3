@@ -1,17 +1,21 @@
 package ca.on.sl.comp208.clientdemo;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.provider.BaseColumns;
+import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +39,21 @@ public class MainActivity extends AppCompatActivity {
         dateTime = (TextView) findViewById(R.id.datetime);
         urlString = (TextView) findViewById(R.id.urlString);
 
+        ListView scroller = (ListView) findViewById(R.id.scrollView);
+        scroller.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3)
+            {
+                Cursor entry = (Cursor) parent.getItemAtPosition(position);
+//                This is the event Id.  Use this to make a request to get all details about specific event
+//                Log.d("ID", entry.getString(0));
+                Intent intent = new Intent(MainActivity.this, DetailView.class);
+                intent.putExtra("ID", entry.getString(0));
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void click(View view){
@@ -48,15 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void update(Cursor cursor) {
         String[] from = {BaseColumns._ID, "Title", "Short Title", "URL", "Date Time Local"};
-        int[] to = {R.id.layout_title, R.id.layout_shortname, R.id.layout_urlstring, R.id.layout_datetime};
+        int[] to = { R.id.layout_id,R.id.layout_title, R.id.layout_shortname, R.id.layout_urlstring, R.id.layout_datetime};
         SimpleCursorAdapter adap = new SimpleCursorAdapter(this, R.layout.list_layout, cursor, from, to);
         ListView scroller = (ListView) findViewById(R.id.scrollView);
         scroller.setAdapter(adap);
 
-//        textView.setText(cursor.getString(DataContract.TITLE));
-//        shortName.setText(cursor.getString(DataContract.SHORT_TITLE));
-//        dateTime.setText(cursor.getString(DataContract.DATETIME));
-//        urlString.setText(cursor.getString(DataContract.URL_STRING));
     }
 
     public void next(View v) {
