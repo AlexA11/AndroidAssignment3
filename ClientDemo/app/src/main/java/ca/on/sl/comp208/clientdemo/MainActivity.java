@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long arg3)
             {
                 Cursor entry = (Cursor) parent.getItemAtPosition(position);
-//                This is the event Id.  Use this to make a request to get all details about specific event
-//                Log.d("ID", entry.getString(0));
                 Intent intent = new Intent(MainActivity.this, DetailView.class);
                 intent.putExtra("ID", entry.getString(0));
                 startActivity(intent);

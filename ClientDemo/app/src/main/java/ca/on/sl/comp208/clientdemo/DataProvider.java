@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 /**
  * Created by alexash on 2017-04-09.
  */
@@ -63,5 +65,15 @@ public class DataProvider extends ContentProvider {
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         return 0;
+    }
+
+    public static Event getEvent(String eventId) {
+        String event_url = "https://api.seatgeek.com/2/events/"+eventId+"?client_id=Njk2MDQ1MHwxNDkxMTc5NDY3Ljg5&format=json" + secret;
+        String result = NetworkUtils.getNetworkData(event_url);
+
+        Gson gson = new Gson();
+        Event events = gson.fromJson(result, Event.class);
+
+        return events;
     }
 }
