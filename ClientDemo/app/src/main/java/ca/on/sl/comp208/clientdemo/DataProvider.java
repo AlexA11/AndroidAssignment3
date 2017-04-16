@@ -21,7 +21,7 @@ import java.util.List;
 public class DataProvider extends ContentProvider {
 
     private static final String secret = "&client_secret=23d95673239dfb61249b43d4f3a1a0b3998f7bf7d93a61aa39046d122c2e90f7";
-    private static final String URL = "https://api.seatgeek.com/2/events?client_id=Njk2MDQ1MHwxNDkxMTc5NDY3Ljg5&format=json" + secret;
+    private static final String URL = "https://api.seatgeek.com/2/events?client_id=Njk2MDQ1MHwxNDkxMTc5NDY3Ljg5&format=json&geoip=true&per_page=50" + secret;
 
     @Override
     public boolean onCreate() {
@@ -67,13 +67,4 @@ public class DataProvider extends ContentProvider {
         return 0;
     }
 
-    public static Event getEvent(String eventId) {
-        String event_url = "https://api.seatgeek.com/2/events/"+eventId+"?client_id=Njk2MDQ1MHwxNDkxMTc5NDY3Ljg5&format=json" + secret;
-        String result = NetworkUtils.getNetworkData(event_url);
-
-        Gson gson = new Gson();
-        Event events = gson.fromJson(result, Event.class);
-
-        return events;
-    }
 }

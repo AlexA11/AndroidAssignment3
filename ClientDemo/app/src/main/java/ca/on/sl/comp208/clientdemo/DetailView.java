@@ -5,8 +5,11 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -26,10 +30,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
-public class DetailView extends AppCompatActivity implements OnMapReadyCallback {
+public class DetailView extends FragmentActivity implements OnMapReadyCallback {
     GoogleMap googleMap;
-    MapFragment mapFragment;
-    static final LatLng Durban = new LatLng(55.70, 13.19);
+    SupportMapFragment mapFragment;
+    static LatLng location;
+    Venues venue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,8 @@ public class DetailView extends AppCompatActivity implements OnMapReadyCallback 
 
 
         Gson gson = new Gson();
-        Venues venue = gson.fromJson(result, Venues.class);
+        venue = gson.fromJson(result, Venues.class);
+        Log.d("Location", venue.toString());
 
         TextView idLabel = (TextView) findViewById(R.id.eventId);
         TextView type = (TextView) findViewById(R.id.type);
@@ -53,14 +59,17 @@ public class DetailView extends AppCompatActivity implements OnMapReadyCallback 
 
         idLabel.setText(venue.getShort_title());
         type.setText(venue.getType());
-        url.setText(venue.getUrl());
+        url.setClickable(true);
+        url.setMovementMethod(LinkMovementMethod.getInstance());
+        url.setText(Html.fromHtml("<a href=\""+venue.getUrl()+"\">Buy Tickets Here!</a> "));
+        location = new LatLng(venue.getVenue().getLocation().getLat(), venue.getVenue().getLocation().getLon());
 
         try {
 
             if (googleMap == null) {
 
-                mapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.map));
-                mapFragment.getMapAsync(this);
+                mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
+                mapFragment.getMapAsync(DetailView.this);
 
             }
 
@@ -74,34 +83,17 @@ public class DetailView extends AppCompatActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        googleMap.setMyLocationEnabled(true);
-        googleMap.getUiSettings().setZoomControlsEnabled(true);
-
         final Marker marker_Durban = googleMap.addMarker(new MarkerOptions()
-                .position(Durban)
-                .snippet("Durban, KwaZulu-Natal, South Africa")
-                .title("Durban"));
+                .position(location)
+                .snippet(venue.getVenue().getDisplay_location())
+                .title(venue.getTitle()));
 
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(55.70, 13.19)).zoom(15).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(location).zoom(15).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(Durban));
-//        googleMap.animateCamera(CameraUpdateFactory.zoomBy(15));
 
     }
 }

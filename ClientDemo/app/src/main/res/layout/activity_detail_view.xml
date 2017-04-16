@@ -30,13 +30,15 @@
             android:id="@+id/typeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/eventId"
-            android:layout_marginTop="45dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
             android:text="Type"
             tools:layout_editor_absoluteX="33dp"
-            tools:layout_editor_absoluteY="90dp" />
+            tools:layout_editor_absoluteY="90dp"
+            android:layout_below="@+id/eventId"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="42dp" />
 
         <TextView
             android:id="@+id/eventId"
@@ -53,11 +55,11 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:text="Link"
             android:layout_below="@+id/typeLabel"
-            android:layout_marginTop="67dp"
-            android:text="Link" />
+            android:layout_toLeftOf="@+id/url"
+            android:layout_toStartOf="@+id/url"
+            android:layout_marginTop="49dp" />
 
         <TextView
             android:id="@+id/url"
@@ -76,11 +78,12 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="390dp"
-            tools:context=".DetailView"
-            android:layout_alignParentBottom="true"
+            android:layout_height="350dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="20dp"
+            tools:context=".DetailView" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
