@@ -10,30 +10,6 @@ import java.util.List;
 
 public class Venues {
 
-    /**
-     * score : 0.492639
-     * taxonomies : [{"parent_id":null,"id":1000000,"name":"sports"},{"parent_id":1000000,"id":1040000,"name":"hockey"}]
-     * stats : {"listing_count":null,"highest_price":null,"average_price":null,"lowest_price_good_deals":null,"lowest_price":null}
-     * short_title : Erie Otters at London Knights
-     * in_hand : {}
-     * performers : [{"score":0.420945,"short_name":"Erie Otters","home_venue_id":null,"taxonomies":[{"parent_id":null,"id":1000000,"name":"sports"},{"parent_id":1000000,"id":1040000,"name":"hockey"}],"stats":{"event_count":1},"away_team":true,"divisions":null,"id":9209,"url":"https://seatgeek.com/erie-otters-tickets","image_license":null,"slug":"erie-otters","type":"hockey","num_upcoming_events":1,"images":{},"name":"Erie Otters","colors":null,"image_attribution":null,"has_upcoming_events":true,"image":null},{"score":0.371659,"short_name":"London Knights","home_venue_id":null,"taxonomies":[{"parent_id":null,"id":1000000,"name":"sports"},{"parent_id":1000000,"id":1040000,"name":"hockey"}],"stats":{"event_count":1},"name":"London Knights","divisions":null,"id":12977,"url":"https://seatgeek.com/london-knights-tickets","image_license":null,"slug":"london-knights","home_team":true,"type":"hockey","num_upcoming_events":1,"images":{},"colors":null,"primary":true,"image_attribution":null,"has_upcoming_events":true,"image":null}]
-     * datetime_local : 2017-04-16T03:30:00
-     * venue : {"url":"https://seatgeek.com/venues/budweiser-gardens/tickets","name_v2":"Budweiser Gardens","name":"Budweiser Gardens","address":"99 Dundas St.","state":"ON","extended_address":"London, Canada","location":{"lon":-81.2522,"lat":42.983},"display_location":"London, Canada","country":"Canada","id":206,"timezone":"America/Toronto","postal_code":"N6A 6K1","city":"London","score":0.623782,"has_upcoming_events":true,"num_upcoming_events":16,"slug":"budweiser-gardens","links":[]}
-     * id : 3836623
-     * created_at : 2017-04-08T00:00:00
-     * type : hockey
-     * datetime_utc : 2017-04-16T07:30:00
-     * date_tbd : true
-     * title : Erie Otters at London Knights
-     * url : https://seatgeek.com/erie-otters-at-london-knights-tickets/hockey/2017-04-16-3-30-am/3836623
-     * visible_until_utc : 2017-04-17T04:00:00
-     * time_tbd : true
-     * is_open : false
-     * datetime_tbd : true
-     * announce_date : 2017-04-08T00:00:00
-     * links : []
-     */
-
     private double score;
     private StatsBean stats;
     private String short_title;
@@ -244,26 +220,6 @@ public class Venues {
     }
 
     public static class VenueBean {
-        /**
-         * url : https://seatgeek.com/venues/budweiser-gardens/tickets
-         * name_v2 : Budweiser Gardens
-         * name : Budweiser Gardens
-         * address : 99 Dundas St.
-         * state : ON
-         * extended_address : London, Canada
-         * location : {"lon":-81.2522,"lat":42.983}
-         * display_location : London, Canada
-         * country : Canada
-         * id : 206
-         * timezone : America/Toronto
-         * postal_code : N6A 6K1
-         * city : London
-         * score : 0.623782
-         * has_upcoming_events : true
-         * num_upcoming_events : 16
-         * slug : budweiser-gardens
-         * links : []
-         */
 
         private String url;
         private String name_v2;
@@ -434,10 +390,6 @@ public class Venues {
         }
 
         public static class LocationBean {
-            /**
-             * lon : -81.2522
-             * lat : 42.983
-             */
 
             private double lon;
             private double lat;
@@ -466,11 +418,6 @@ public class Venues {
     }
 
     public static class TaxonomiesBean {
-        /**
-         * parent_id : null
-         * id : 1000000
-         * name : sports
-         */
 
         private Object parent_id;
         private int id;
@@ -507,29 +454,6 @@ public class Venues {
     }
 
     public static class PerformersBean {
-        /**
-         * score : 0.420945
-         * short_name : Erie Otters
-         * home_venue_id : null
-         * taxonomies : [{"parent_id":null,"id":1000000,"name":"sports"},{"parent_id":1000000,"id":1040000,"name":"hockey"}]
-         * stats : {"event_count":1}
-         * away_team : true
-         * divisions : null
-         * id : 9209
-         * url : https://seatgeek.com/erie-otters-tickets
-         * image_license : null
-         * slug : erie-otters
-         * type : hockey
-         * num_upcoming_events : 1
-         * images : {}
-         * name : Erie Otters
-         * colors : null
-         * image_attribution : null
-         * has_upcoming_events : true
-         * image : null
-         * home_team : true
-         * primary : true
-         */
 
         private double score;
         private String short_name;
@@ -741,11 +665,6 @@ public class Venues {
         }
 
         public static class TaxonomiesBeanX {
-            /**
-             * parent_id : null
-             * id : 1000000
-             * name : sports
-             */
 
             private Object parent_id;
             private int id;

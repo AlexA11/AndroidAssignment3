@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.provider.BaseColumns;
 import android.util.Log;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URLEncoder;
+
 
 public class MainActivity extends AppCompatActivity {
     Cursor cursor;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     TextView shortName;
     TextView urlString;
     TextView dateTime;
+    EditText searchText;
 
 
     @Override
@@ -98,4 +102,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void searchClick(View view){
+        searchText = (EditText) findViewById(R.id.searchText);
+
+        String query = URLEncoder.encode(searchText.getText().toString());
+        String url = "https://api.seatgeek.com/2/events?client_id=Njk2MDQ1MHwxNDkxMTc5NDY3Ljg5&format=json&q=" + query;
+
+
+        cursor = DataProvider.getSearchItems(url);
+        cursor.moveToFirst();
+        update(cursor);
+
+    }
+
 }

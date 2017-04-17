@@ -56,25 +56,23 @@ public class DetailView extends FragmentActivity implements OnMapReadyCallback {
         TextView idLabel = (TextView) findViewById(R.id.eventId);
         TextView type = (TextView) findViewById(R.id.type);
         TextView url = (TextView) findViewById(R.id.url);
+        TextView address = (TextView) findViewById(R.id.address);
 
         idLabel.setText(venue.getShort_title());
         type.setText(venue.getType());
+        address.setText(venue.getVenue().getAddress());
+
         url.setClickable(true);
         url.setMovementMethod(LinkMovementMethod.getInstance());
         url.setText(Html.fromHtml("<a href=\""+venue.getUrl()+"\">Buy Tickets Here!</a> "));
+
         location = new LatLng(venue.getVenue().getLocation().getLat(), venue.getVenue().getLocation().getLon());
-
         try {
-
             if (googleMap == null) {
-
                 mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
                 mapFragment.getMapAsync(DetailView.this);
-
             }
-
         } catch (Exception e) {
-
             e.printStackTrace();
         }
 
